@@ -1,6 +1,8 @@
 import streamlit as st
 from type_coffe.page import view_type_coffe
 from description_coffe.page import view_description_coffe
+from company_coffe.page import view_company_coffe
+from review_coffe.page import view_review_coffe
 
 
 def main():
@@ -21,10 +23,10 @@ def main():
         return view_description_coffe()
 
     if menu_options == "Companhias des Cafés":
-        return st.write("Lista de Companhias/Empresas de Cafés")
+        return view_company_coffe()
 
     if menu_options == "Avaliações das Companhias":
-        return st.write("Lista de Avaliações das Companhias")
+        return view_review_coffe()
 
 
 if __name__ == "__main__":
