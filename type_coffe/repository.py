@@ -6,15 +6,15 @@ from login.service import logout
 class TypeCoffeRepository():
     def __init__(self):
         self.__base_url = 'http://breno7.pythonanywhere.com/api/v1/'
-        self.__type_coffe_url = f'{self.__base_url}/type_coffe/'
+        self.__type_coffe_url = f'{self.__base_url}typecoffe/'
         self.__headers = {
-            'Authorization': f'Token {st.session_state.token}'
+            'Authorization': f'Bearer {st.session_state.token}'
         }
 
     def get_type_coffe(self):
         response = requests.get(
             self.__type_coffe_url,
-            headers=self.__headers
+            headers=self.__headers,
         )
 
         if response.status_code == 200:
@@ -28,7 +28,7 @@ class TypeCoffeRepository():
     def create_type_coffe(self, name):
         response = requests.post(
             self.__type_coffe_url,
-            data={'name': name},
+            data=name,
             headers=self.__headers,
         )
 

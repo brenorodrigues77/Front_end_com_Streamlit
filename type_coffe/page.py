@@ -1,27 +1,26 @@
 import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid
-
-type_coffes = [
-    {
-        'id': 1,
-        'name': 'Expresso',
-    },
-    {
-        'id': 2,
-        'name': 'Americano',
-    },
-]
+from type_coffe.service import TypeCoffeService
 
 
 def view_type_coffe():
-    st.subheader("Lista de Tipos de Cafés")
 
-    AgGrid(
-        data=pd.DataFrame(type_coffes),
-        reaload_data=True,
-        key="type_coffe_grid",
-    )
+    type_coffe_service = TypeCoffeService()
+    type_coffes = type_coffe_service.get_type_coffe()
+
+    if type_coffes:
+
+        st.subheader("Lista de Tipos de Cafés")
+
+        type_coffe_df = pd.json_normalize(type_coffes)
+        AgGrid(
+            data=type_coffe_df,
+            reaload_data=True,
+            key="type_coffe_grid",
+        )
+    else:
+        st.warning("Nenhum tipo de Café cadastrado")
 
     st.subheader("Cadastrar novo tipo de café")
 

@@ -9,7 +9,7 @@ from login.service import login
 
 def main():
     if 'token' not in st.session_state:
-        return view_login()
+        view_login()
     else:
         st.title("Painel da API!")
 

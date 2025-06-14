@@ -11,5 +11,5 @@ class TypeCoffeService:
     def create_type_coffe(self, name):
         type_coffe = dict(
             name=name,
-        ),
+        )
         return self.type_coffe_repository.create_type_coffe(type_coffe)
