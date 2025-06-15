@@ -26,4 +26,12 @@ def view_type_coffe():
 
     name = st.text_input("Nome do Café/Tipo")
     if st.button("Cadastrar"):
-        st.success(f"{name} Cadastrado com sucesso")
+        new_type_coffe = type_coffe_service.create_type_coffe(
+            name=name,
+        )
+
+        if new_type_coffe:
+            st.success(f"{name} Novo Tipo de Café Cadastrado com sucesso")
+            st.rerun()
+        else:
+            st.error("Erro ao cadastrar novo tipo de Café")

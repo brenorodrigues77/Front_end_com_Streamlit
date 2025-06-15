@@ -5,12 +5,12 @@ class Auth:
 
     def __init__(self):
         self.__base_url = 'http://breno7.pythonanywhere.com/api/v1/'
-        self.__auth_url = f'{self.__base_url}/authentication/token/'
+        self.__auth_url = f'{self.__base_url}authentication/token/'
 
     def get_token(self, username, password):
         auth_payload = {
             'username': username,
-            'password': password,
+            'password': password
         }
         auth_response = requests.post(
             self.__auth_url,
