@@ -1,28 +1,25 @@
 import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid
-
-review_coffes = [
-    {
-        'id': 1,
-        'name': 'Otima cafeeria',
-    },
-    {
-        'id': 2,
-        'name': 'maravilhoso',
-    },
-]
+from review_coffe.service import ReviewCoffeService
 
 
 def view_review_coffe():
-    st.subheader("Lista de companhias")
 
-    AgGrid(
+    review_coffe_service = ReviewCoffeService()
+    review_coffes = review_coffe_service.get_review_coffe()
 
-        data=pd.DataFrame(review_coffes),
-        reaload_data=True,
-        key="type_coffe_grid",
-    )
+    st.subheader("avaliações de companhias")
+
+    if review_coffes:
+        review_coffe_df = pd.json_normalize(review_coffes)
+        AgGrid(
+            data=review_coffe_df,
+            reaload_data=True,
+            key="review_coffe_grid",
+        )
+    else:
+        st.warning("Nenhuma review de Café cadastrada")
 
     st.subheader("Cadastrar nova review de Café")
 

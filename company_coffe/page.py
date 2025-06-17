@@ -21,7 +21,7 @@ def view_company_coffe():
     AgGrid(
         data=company_coffe_df,
         reaload_data=True,
-        key="type_coffe_grid",
+        key="company_coffe_grid",
     )
 
     st.subheader("Cadastrar nova companhia de café")
@@ -38,8 +38,41 @@ def view_company_coffe():
 
     type_coffe_service = TypeCoffeService()
     type_coffes = type_coffe_service.get_type_coffe()
-    type_coffe_name = {type_coffe['id']: type_coffe['name']
+    type_coffe_name = {type_coffe['name']: type_coffe['id']
                        for type_coffe in type_coffes}
 
+    selected_type_coffe = st.selectbox(
+        "Tipo de Café",
+        list(type_coffe_name.keys()),
+    )
+
+    description_coffe_service = DescriptionCoffeService()
+    description_coffes = description_coffe_service.get_description_coffe()
+    description_coffe_name = {description_coffe['name']: description_coffe['id']
+                              for description_coffe in description_coffes}
+
+    selected_description_coffe = st.multiselect(
+        "Descrição do Café",
+        list(description_coffe_name.keys()),
+    )
+
+    select_descriptin_coffe_ids = [
+        description_coffe_name[name] for name in selected_description_coffe]
+
+    resume = st.text_area("Resumo")
+
     if st.button("Cadastrar"):
-        st.success(f"{title} Cadastrado com sucesso")
+        new_company_coffe = (
+            company_coffe_service.create_company_coffe(
+                title=title,
+                typecoffe=type_coffe_name[selected_type_coffe],
+                realesedate=realese_date,
+                descriptioncoffe=select_descriptin_coffe_ids,
+                resume=resume,
+            )
+        )
+        if new_company_coffe:
+            st.rerun()
+            st.success("Companhia de Café cadastrada com sucesso")
+        else:
+            st.error("Erro ao cadastrar companhia de Café")

@@ -8,11 +8,11 @@ class CompanyCoffeService:
     def get_company_coffe(self):
         return self.company_coffe_repository.get_company_coffe()
 
-    def create_company_coffe(self, title, type_coffe, realese_date, descriptioncoffe, resume):
+    def create_company_coffe(self, title, typecoffe, realesedate, descriptioncoffe, resume):
         company_coffe = dict(
             title=title,
-            type_coffe=type_coffe,
-            realese_date=realese_date,
+            typecoffe=typecoffe,
+            realesedate=realesedate,
             descriptioncoffe=descriptioncoffe,
             resume=resume,
         )
