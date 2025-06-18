@@ -13,6 +13,6 @@ class ReviewCoffeService():
         review_coffe = dict(
             companycoffe=companycoffe,
             stars=stars,
-            comment=comment
+            comment=comment,
         )
         return self.review_coffe_repository.create_review_coffe(review_coffe)
