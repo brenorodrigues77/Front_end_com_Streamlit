@@ -26,14 +26,12 @@ def view_review_coffe():
 
     company_coffe_service = CompanyCoffeService()
     companys = company_coffe_service.get_company_coffe()
-    print(companys)
 
     company_coffe_title = {
-        company_coffe['title']: company_coffe['id'] for company_coffe in companys}
+        company_coffe['title']: company_coffe['typecoffe']['id'] for company_coffe in companys}
 
     selected_company_coffe_title = st.selectbox(
-        'Companhia',
-        (company_coffe_title),
+        'Companhia', list(company_coffe_title.keys()),
     )
 
     stars = st.number_input(label="Estrelas", min_value=0, max_value=5, step=1)

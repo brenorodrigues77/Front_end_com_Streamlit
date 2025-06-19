@@ -39,3 +39,17 @@ class CompanyCoffeRepository:
             return None
         Exception(
             f'Erro ao cadastrar a empresa de Café, Status Code: {response.status_code}')
+
+    def get_company_stats(self):
+        response = requests.get(
+            f'{self.company_coffe_url}stats/',
+            headers=self.__headers,
+        )
+
+        if response.status_code == 200:
+            return response.json()
+        if response.status_code == 401:
+            logout()
+            return None
+        Exception(
+            f'Erro ao obter estatísticas da API, Status Code: {response.status_code}')

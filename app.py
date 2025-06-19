@@ -5,6 +5,7 @@ from company_coffe.page import view_company_coffe
 from login.page import view_login
 from review_coffe.page import view_review_coffe
 from login.service import login
+from home.page import view_home
 
 
 def main():
@@ -19,7 +20,7 @@ def main():
         )
 
         if menu_options == "Inicio":
-            return st.write("Bem vindo ao Painel Inicial")
+            return view_home()
 
         if menu_options == "Tipos de Cafes":
             return view_type_coffe()

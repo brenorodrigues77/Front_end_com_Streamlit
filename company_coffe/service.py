@@ -18,3 +18,6 @@ class CompanyCoffeService:
         )
 
         return self.company_coffe_repository.create_company_coffe(company_coffe)
+    
+    def get_company_stats(self):
+        return self.company_coffe_repository.get_company_stats()
