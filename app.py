@@ -7,6 +7,8 @@ from review_coffe.page import view_review_coffe
 from login.service import login
 from home.page import view_home
 
+st.set_page_config(layout="wide")
+
 
 def main():
     if 'token' not in st.session_state:

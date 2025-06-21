@@ -42,7 +42,7 @@ class CompanyCoffeRepository:
 
     def get_company_stats(self):
         response = requests.get(
-            f'{self.company_coffe_url}stats/',
+            f'{self.__company_coffe_url}stats/',
             headers=self.__headers,
         )
 

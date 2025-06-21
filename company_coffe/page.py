@@ -28,7 +28,7 @@ def view_company_coffe():
 
     title = st.text_input("Nome da companhia")
 
-    realese_date = st.date_input(
+    realesedate = st.date_input(
         label="Data de criação da Companhia",
         value=datetime.today(),
         min_value=datetime(1500, 1, 1),
@@ -66,7 +66,7 @@ def view_company_coffe():
             company_coffe_service.create_company_coffe(
                 title=title,
                 typecoffe=type_coffe_name[selected_type_coffe],
-                realesedate=realese_date,
+                realesedate=realesedate,
                 descriptioncoffe=select_descriptin_coffe_ids,
                 resume=resume,
             )
