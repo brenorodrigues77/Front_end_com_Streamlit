@@ -1,5 +1,5 @@
+import streamlit as st
 from review_coffe.repository import ReviewCoffeRepository
-from login.service import logout
 
 
 class ReviewCoffeService():
@@ -7,7 +7,11 @@ class ReviewCoffeService():
         self.review_coffe_repository = ReviewCoffeRepository()
 
     def get_review_coffe(self):
-        return self.review_coffe_repository.get_review_coffe()
+        if 'review_coffe' in st.session_state:
+            return st.session_state.review_coffe
+        review_coffe = self.review_coffe_repository.get_review_coffe()
+        st.session_state.review_coffe = review_coffe
+        return review_coffe
 
     def create_review_coffe(self, companycoffe, stars, comment):
         review_coffe = dict(
@@ -15,4 +19,8 @@ class ReviewCoffeService():
             stars=stars,
             comment=comment,
         )
-        return self.review_coffe_repository.create_review_coffe(review_coffe)
+
+        new_review_coffe = self.review_coffe_repository.create_review_coffe(
+            review_coffe)
+        st.session_state.review_coffe.append(new_review_coffe)
+        return new_review_coffe

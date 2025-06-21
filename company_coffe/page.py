@@ -56,7 +56,7 @@ def view_company_coffe():
         list(description_coffe_name.keys()),
     )
 
-    select_descriptin_coffe_ids = [
+    select_description_coffe_ids = [
         description_coffe_name[name] for name in selected_description_coffe]
 
     resume = st.text_area("Resumo")
@@ -67,7 +67,7 @@ def view_company_coffe():
                 title=title,
                 typecoffe=type_coffe_name[selected_type_coffe],
                 realesedate=realesedate,
-                descriptioncoffe=select_descriptin_coffe_ids,
+                descriptioncoffe=select_description_coffe_ids,
                 resume=resume,
             )
         )

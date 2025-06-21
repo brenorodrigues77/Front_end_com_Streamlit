@@ -27,8 +27,8 @@ def view_review_coffe():
     company_coffe_service = CompanyCoffeService()
     companys = company_coffe_service.get_company_coffe()
 
-    company_coffe_title = {
-        company_coffe['title']: company_coffe['typecoffe']['id'] for company_coffe in companys}
+    company_coffe_title = {company_coffe['title']: company_coffe['typecoffe']['id']
+                           for company_coffe in companys}
 
     selected_company_coffe_title = st.selectbox(
         'Companhia', list(company_coffe_title.keys()),
@@ -45,8 +45,6 @@ def view_review_coffe():
             stars=stars,
             comment=comment,
         )
-
-        print(new_review_coffe)
 
         if new_review_coffe:
             st.rerun()
